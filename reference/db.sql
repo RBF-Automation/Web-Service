@@ -12,6 +12,7 @@ create table Account (
 create table Node (
     ID bigint unsigned NOT NULL AUTO_INCREMENT,
     nodeId bigint unsigned NOT NULL,
+    type int unsigned NOT NULL,
     time int unsigned NOT NULL,
 
     PRIMARY KEY (ID)

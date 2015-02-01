@@ -9,9 +9,9 @@ if (!isset($_SESSION['userid'])) {
     return;
 }
 
-if (isset($_POST['nodeId'])) {
+if (isset($_POST['nodeId']) && isset($_POST['nodeType'])) {
     try {
-        $account = Node::createNew($_POST['nodeId']);
+        $account = Node::createNew($_POST['nodeId'], $_POST['nodeType']);
         header('Location: /');
     } catch (Exception $e) {
         echo  $e->getMessage();

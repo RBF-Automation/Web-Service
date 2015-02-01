@@ -41,6 +41,8 @@ foreach (Account::getAccounts() as $account) {
 <form action="createNode.php" method="post">
 NodeId
 <input name="nodeId"/><br/>
+type
+<input name="nodeType"/><br/>
 <input type="submit"/>
 </form>
 
@@ -48,6 +50,7 @@ NodeId
 <?php
 foreach (Node::getNodes() as $node) {
     echo "nodeId: <span style='font-weight: bold;'>" . $node->nodeId() . "</span>";
+    echo "<br/>nodeType: <span style='font-weight: bold;'>" . $node->type() . "</span>";
     echo "<br/>Node created on: <span style='font-weight: bold;'>" . date('j/n/Y h:i:s A', $node->time()) . "</span><br/>";
     echo '<a href="deleteNode.php?id=' . $node->ID() . '"> delete Node</a><br/><br/>';
 }
