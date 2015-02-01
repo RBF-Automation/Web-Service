@@ -60,13 +60,15 @@ class Account extends Fireball\ORM {
     }
 
 
-    public static function login($username, $password) {
+    public static function login($username, $password, $resetToken = false) {
         if (!self::accountExistsUsername($username)) {
             throw new Exception("Account Does Not Exist");
         }
         $account = self::fromUsername($username);
         $hash = self::hashPassword($password, $account->salt());
-        $account->authToken(md5(openssl_random_pseudo_bytes(16, $cstrong)));
+        if ($resetToken) {
+            $account->authToken(md5(openssl_random_pseudo_bytes(16, $cstrong)));
+        }
 
         if ($account->hash() == $hash) {
             return $account;

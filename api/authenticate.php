@@ -9,7 +9,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
     try {
-        $account = Account::login($username, $password);
+        $account = Account::login($username, $password, true);
         if ($account != false) {
             $out = array('result' => true, "message" => 'login successful', 'token' => $account->authToken());
         } else {
