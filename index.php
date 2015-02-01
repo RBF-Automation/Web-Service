@@ -23,7 +23,7 @@ Welcome!
     username
     <input name="username"/><br/>
     password
-    <input name="password"/><br/>
+    <input type="password" name="password"/><br/>
     <input type="submit"/>
 </form>
 
