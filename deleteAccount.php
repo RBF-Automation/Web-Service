@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
         Account::deleteAccount($_GET['id']);
         header('Location: /');
     } catch (Exception $e) {
-        echo $e;
+        echo  $e->getMessage();
     }
 
 }

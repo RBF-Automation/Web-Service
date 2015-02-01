@@ -9,6 +9,14 @@ create table Account (
     PRIMARY KEY (ID)
 );
 
+create table Node (
+    ID bigint unsigned NOT NULL AUTO_INCREMENT,
+    nodeId bigint unsigned NOT NULL,
+    time int unsigned NOT NULL,
+
+    PRIMARY KEY (ID)
+);
+
 
 INSERT INTO Account VALUES (
     0,

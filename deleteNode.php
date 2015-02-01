@@ -1,6 +1,8 @@
 <?php
+include_once 'accountUtils.php';
 include_once 'SQLConnect.php';
 include_once 'src/Account.php';
+include_once 'src/Node.php';
 session_start();
 
 if (!isset($_SESSION['userid'])) {
@@ -8,16 +10,14 @@ if (!isset($_SESSION['userid'])) {
     return;
 }
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = strtolower($_POST['username']);
-    $password = $_POST['password'];
-
+if (isset($_GET['id'])) {
     try {
-        $account = Account::createNew($username, $password);
+        Node::deleteNode($_GET['id']);
         header('Location: /');
     } catch (Exception $e) {
         echo  $e->getMessage();
     }
+
 }
 
 ?>
