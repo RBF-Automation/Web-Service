@@ -2,7 +2,12 @@
 
 class NodeTypes {
 
-    const SWITCH = 0;
+    const SWITCH_NODE = 0;
+
+    const MAP = array(
+        self::SWITCH_NODE => "Switch",
+    );
+
 
 }
 

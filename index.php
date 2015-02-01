@@ -2,6 +2,8 @@
 include_once 'SQLConnect.php';
 include_once 'src/Account.php';
 include_once 'src/Node.php';
+include_once 'src/NodeTypes.php';
+include_once 'src/SwitchNodeProperties.php';
 session_start();
 
 if (!isset($_SESSION['userid'])) {
@@ -50,8 +52,27 @@ type
 <?php
 foreach (Node::getNodes() as $node) {
     echo "nodeId: <span style='font-weight: bold;'>" . $node->nodeId() . "</span>";
-    echo "<br/>nodeType: <span style='font-weight: bold;'>" . $node->type() . "</span>";
+    echo "<br/>nodeType: <span style='font-weight: bold;'>" . NodeTypes::MAP[$node->type()] . "</span>";
     echo "<br/>Node created on: <span style='font-weight: bold;'>" . date('j/n/Y h:i:s A', $node->time()) . "</span><br/>";
-    echo '<a href="deleteNode.php?id=' . $node->ID() . '"> delete Node</a><br/><br/>';
+    echo '<a href="deleteNode.php?id=' . $node->ID() . '"> delete Node</a><br/>';
+
+    switch ($node->type()) {
+        case NodeTypes::SWITCH_NODE:
+            $props = new SwitchNodeProperties($node->ID());
+
+            echo '<div style="margin-left: 40px; display: block;">';
+            echo '<form action="editSwitchNode.php?ID=' . $node->ID() . '" method="post">';
+            echo 'Name<input name="name" value="' . $props->name() . '"/><br/>';
+            echo 'On text<input name="on" value="' . $props->btn_on() . '"/><br/>';
+            echo 'Off text<input name="off" value="' . $props->btn_off() . '"/><br/>';
+            echo '<input type="submit"/>';
+            echo '</form>';
+            echo '</div>';
+
+            break;
+
+    }
+
+
 }
 ?>

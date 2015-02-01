@@ -18,6 +18,16 @@ create table Node (
     PRIMARY KEY (ID)
 );
 
+create table SwitchNodeProperties (
+    ID bigint unsigned NOT NULL,
+    name varchar(100) NOT NULL,
+    btn_on varchar(100) NOT NULL,
+    btn_off varchar(100) NOT NULL,
+
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID) REFERENCES Node(ID)
+);
+
 
 INSERT INTO Account VALUES (
     0,

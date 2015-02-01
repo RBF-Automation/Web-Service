@@ -1,6 +1,8 @@
 <?php
 
 include_once 'DataAccessLayer/Fireball.php';
+include_once 'SwitchNodeProperties.php';
+include_once 'NodeTypes.php';
 
 class Node extends Fireball\ORM {
 
@@ -38,6 +40,13 @@ class Node extends Fireball\ORM {
         $ID = Fireball\ORM::newRecordAutoIncrement(self::TABLE_NAME, $data);
 
         if (is_numeric($ID)) {
+
+            switch ($type) {
+                case NodeTypes::SWITCH_NODE:
+                    SwitchNodeProperties::createNew($ID);
+                    break;
+            }
+
             return new self($ID);
         } else {
             throw new Exception("Node creation failed");
@@ -51,6 +60,15 @@ class Node extends Fireball\ORM {
     }
 
     public static function deleteNode($id) {
+        $node = new self($id);
+        $type = $node->type();
+
+        switch ($type) {
+            case NodeTypes::SWITCH_NODE:
+            SwitchNodeProperties::delete($id);
+            break;
+        }
+
         self::rawQuery('delete from ' . self::TABLE_NAME . ' where id = :ID', array(self::PRIMARY_KEY => $id), true);
     }
 
