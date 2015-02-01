@@ -155,6 +155,24 @@ namespace Fireball {
         }
 
         /**
+        * method to insert a key => value array into the database
+        */
+        public static function newRecordAutoIncrement($tableName, $data) {
+            connect();
+            $keys = array();
+            $qArr = array();
+            $cols = array();
+            foreach($data as $key => $value) {
+                $cols[] = $key;
+                $keys[] = ":" . $key;
+                $qArr[$key] = $value;
+            }
+            $query = self::getConnection()->prepare('INSERT INTO ' . $tableName . ' (' . implode(", ", $cols) . ') VALUES (' . implode(", ", $keys) . ')');
+            $query->execute($qArr);
+            return self::getConnection()->lastInsertId();
+        }
+
+        /**
          * returns true if the row exists by the given ID
          */
         public function rowExists($ID) {
