@@ -4,6 +4,7 @@ create table Account (
     hash varchar(104) NOT NULL,
     salt varchar(32) NOT NULL,
     time int unsigned NOT NULL,
+    authToken char(32) NOT NULL,
 
     PRIMARY KEY (ID)
 );
