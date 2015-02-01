@@ -8,6 +8,7 @@ if (checkLogin()) {
     error_log('loggedin! ID:' . $_SESSION['userid']);
     $testManifest = array(
         "id" => 1,
+        "type" => 0,
         "name" => "Front Door",
         "btn_on" => "Unlock",
         "btn_off" => "Lock",
