@@ -18,8 +18,8 @@ if (checkLogin()) {
             case NodeTypes::SWITCH_NODE:
                 $props = new SwitchNodeProperties($node->ID());
                 $out[] = array(
-                    "id" => $node->ID(),
-                    "type" => $node->type(),
+                    "id" => intval($node->ID()),
+                    "type" => intval($node->type()),
                     "name" => $props->name(),
                     "btn_on" => $props->btn_on(),
                     "btn_off" => $props->btn_off(),
