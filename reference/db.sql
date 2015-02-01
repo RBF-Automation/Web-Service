@@ -8,3 +8,13 @@ create table Account (
 
     PRIMARY KEY (ID)
 );
+
+
+INSERT INTO Account VALUES (
+    0,
+    'admin',
+    '70c40d7a05d4e677$IjAu0nY3YzMh0lXBl4/QdqvipYOHhhEfcvOTkOnuEmBbUwM84YtwwEUMY3M7EGMiUm37/SGZhF1Pi891PfzrD/',
+    '70c40d7a05d4e677ac78709f54f76ba0',
+    UNIX_TIMESTAMP(),
+    '0'
+);
