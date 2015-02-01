@@ -53,7 +53,7 @@ type
 foreach (Node::getNodes() as $node) {
     $type = $node->type();
     echo "nodeId: <span style='font-weight: bold;'>" . $node->nodeId() . "</span>";
-    echo "<br/>nodeType: <span style='font-weight: bold;'>" . NodeTypes::MAP[$type] . "</span>";
+    echo "<br/>nodeType: <span style='font-weight: bold;'>" . NodeTypes::$map[$type] . "</span>";
     echo "<br/>Node created on: <span style='font-weight: bold;'>" . date('j/n/Y h:i:s A', $node->time()) . "</span><br/>";
     echo '<a href="deleteNode.php?id=' . $node->ID() . '"> delete Node</a><br/>';
 

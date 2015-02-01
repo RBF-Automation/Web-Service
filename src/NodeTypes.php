@@ -4,7 +4,7 @@ class NodeTypes {
 
     const SWITCH_NODE = 0;
 
-    const MAP = array(
+    static $map = array(
         self::SWITCH_NODE => "Switch",
     );
 
