@@ -158,7 +158,6 @@ namespace Fireball {
         * method to insert a key => value array into the database
         */
         public static function newRecordAutoIncrement($tableName, $data) {
-            connect();
             $keys = array();
             $qArr = array();
             $cols = array();

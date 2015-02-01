@@ -21,7 +21,7 @@ class Account extends Fireball\ORM {
 //Override
 protected function setUp(Fireball\TableDef $def) {
     $def->setName(self::TABLE_NAME);
-    $def->addKey(self::PRIMARY_KEY);
+    $def->setKey(self::PRIMARY_KEY);
     $def->setCols(self::$fields);
 }
 
@@ -38,7 +38,16 @@ public static function createNew($username, $password) {
     $salt = md5(sha1($bytes));
     $hash = self::hashPassword($password, $salt);
 
-    if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($username, $hash, $salt, time()))) {
+    $data = array (
+        self::USERNAME => $username,
+        self::HASH => $hash,
+        self::SALT => $salt,
+        self::TIME => time(),
+    );
+
+    $ID = Fireball\ORM::newRecordAutoIncrement(self::TABLE_NAME, $data);
+
+    if (is_numeric($ID)) {
         return new self($ID);
     } else {
         throw new Exception("account creation failed");
