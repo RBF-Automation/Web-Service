@@ -1,13 +1,13 @@
 <?php
-include_once 'SQLConnect.php';
-include_once 'src/Account.php';
-include_once 'src/Node.php';
-include_once 'src/NodeTypes.php';
-include_once 'src/SwitchNodeProperties.php';
+include_once '../SQLConnect.php';
+include_once '../src/Account.php';
+include_once '../src/Node.php';
+include_once '../src/NodeTypes.php';
+include_once '../src/SwitchNodeProperties.php';
 session_start();
 
 if (!isset($_SESSION['userid'])) {
-    header('Location: /login.php');
+    header('Location: /conf/login.php');
     return;
 }
 

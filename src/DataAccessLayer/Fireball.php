@@ -2,6 +2,7 @@
 /**
  * The MIT License (MIT)
  * Copyright (c) 2014 Brian Floersch
+ * https://github.com/gh123man/Fireball-for-PHP
  */
 
 namespace Fireball {
@@ -134,7 +135,7 @@ namespace Fireball {
         }
 
         /**
-         * method to insert a key => value array into the database
+         * method to insert a key => value array into the database TODO: NEEDS REWRITE TO MATCH newRecordAutoIncrement
          */
         public static function newRecord($tableName, $fields, $data) {
 

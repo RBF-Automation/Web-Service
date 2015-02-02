@@ -1,7 +1,7 @@
 <?php
-include_once 'accountUtils.php';
-include_once 'SQLConnect.php';
-include_once 'src/Account.php';
+include_once '../accountUtils.php';
+include_once '../SQLConnect.php';
+include_once '../src/Account.php';
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = strtolower($_POST['username']);
@@ -12,7 +12,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         if ($account != false) {
             session_start();
             $_SESSION['userid'] = $account->ID();
-            header("Location: /");
+            header("Location: /conf");
         } else {
         }
     } catch (Exception $e) {
