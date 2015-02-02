@@ -8,7 +8,6 @@ class Account extends Fireball\ORM {
     const PRIMARY_KEY = 'ID';
     const USERNAME    = 'username';
     const HASH        = 'hash';
-    const SALT        = 'salt';
     const TIME        = 'time';
     const TOKEN       = 'authToken';
 
@@ -16,7 +15,6 @@ class Account extends Fireball\ORM {
         self::PRIMARY_KEY,
         self::USERNAME,
         self::HASH,
-        self::SALT,
         self::TIME,
         self::TOKEN,
     );
@@ -37,14 +35,11 @@ class Account extends Fireball\ORM {
             throw new Exception("Account already Exists");
         }
 
-        $bytes = openssl_random_pseudo_bytes(16, $cstrong);
-        $salt = md5(sha1($bytes));
-        $hash = self::hashPassword($password, $salt);
+        $hash = self::hashPassword($password);
 
         $data = array (
             self::USERNAME => $username,
             self::HASH => $hash,
-            self::SALT => $salt,
             self::TIME => time(),
             self::TOKEN => md5(openssl_random_pseudo_bytes(16, $cstrong)),
         );
@@ -65,12 +60,11 @@ class Account extends Fireball\ORM {
             throw new Exception("Account Does Not Exist");
         }
         $account = self::fromUsername($username);
-        $hash = self::hashPassword($password, $account->salt());
         if ($resetToken) {
-            $account->authToken(md5(openssl_random_pseudo_bytes(16, $cstrong)));
+            $account->authToken(md5(openssl_random_pseudo_bytes(16)));
         }
 
-        if ($account->hash() == $hash) {
+        if (self::checkPassword($password, $account->hash())) {
             return $account;
         } else if ($account->username() == $username) {
             return false;
@@ -93,8 +87,13 @@ class Account extends Fireball\ORM {
         return Fireball\ORM::rowExistsFrom(self::TABLE_NAME, self::TOKEN, $token);
     }
 
-    protected function hashPassword($password, $salt) {
-        return substr(crypt($password, '$6$rounds=5000$' . $salt . '$'), 15);
+    protected function hashPassword($password) {
+        return crypt($password, '$6$rounds=5000$' . openssl_random_pseudo_bytes(16));
+    }
+
+    protected function checkPassword($password, $hash) {
+        $hash1 = crypt($password, $hash);
+        return $hash == crypt($password, $hash);
     }
 
     public static function fromUsername($username) {

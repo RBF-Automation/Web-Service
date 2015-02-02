@@ -1,8 +1,7 @@
 create table Account (
     ID bigint unsigned NOT NULL AUTO_INCREMENT,
     username varchar(256) NOT NULL,
-    hash varchar(104) NOT NULL,
-    salt varchar(32) NOT NULL,
+    hash binary(118) NOT NULL,
     time int unsigned NOT NULL,
     authToken char(32) NOT NULL,
 
@@ -32,8 +31,7 @@ create table SwitchNodeProperties (
 INSERT INTO Account VALUES (
     0,
     'admin',
-    '70c40d7a05d4e677$IjAu0nY3YzMh0lXBl4/QdqvipYOHhhEfcvOTkOnuEmBbUwM84YtwwEUMY3M7EGMiUm37/SGZhF1Pi891PfzrD/',
-    '70c40d7a05d4e677ac78709f54f76ba0',
+    '$6$rounds=5000$oMÔIÈ¿ºº1Oréà$uUTLM1U2EC9evV6QgFfD17LXfOQkX0bZhMyL7duBHPZPT4l6IbuoHyMPyrJcf2x2JclO6yvT71lDE16IJFeBA1',
     UNIX_TIMESTAMP(),
     '0'
 );
