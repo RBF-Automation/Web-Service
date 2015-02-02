@@ -27,10 +27,9 @@ if (checkLogin()) {
                 break;
         }
     }
-    echo json_encode($out);
 } else {
-    error_log('not logged in');
+    $out = array('result' => false, "message" => 'Not Logged in');
 }
 
-
+echo json_encode($out);
 ?>
