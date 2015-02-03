@@ -7,6 +7,7 @@ include_once '../src/SwitchNodeProperties.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
 include_once '../hwController.php';
+include_once 'ErrorCodes.php';
 session_start();
 
 
@@ -20,12 +21,12 @@ if (checkLogin()) {
         $out = array('result' => true, "message" => 'setData');
 
     } else {
-        $out = array('result' => false, "message" => 'Invalid args');
+        $out = array('result' => false, "errorCode" => ErrorCodes::INVALID_PARAMETERS, "message" => 'Invalid args');
     }
 
 
 } else {
-    $out = array('result' => false, "message" => 'Not Logged in');
+    $out = array('result' => false, "errorCode" => ErrorCodes::NOT_LOGGED_IN, "message" => 'Not Logged in');
 }
 
 echo json_encode($out);

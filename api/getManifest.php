@@ -6,6 +6,7 @@ include_once '../src/Node.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
+include_once 'ErrorCodes.php';
 session_start();
 
 
@@ -28,7 +29,7 @@ if (checkLogin()) {
         }
     }
 } else {
-    $out = array('result' => false, "message" => 'Not Logged in');
+    $out = array('result' => false, "errorCode" => ErrorCodes::NOT_LOGGED_IN, "message" => 'Not Logged in');
 }
 
 echo json_encode($out);
