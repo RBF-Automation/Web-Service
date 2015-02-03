@@ -6,7 +6,7 @@ function sendSwitchMessage($pipe, $state) {
 
     $fp = stream_socket_client("tcp://localhost:30000", $errno, $errstr);
 
-    fwrite($fp, json_encode($msg));
+    fwrite($fp, json_encode($msg, JSON_NUMERIC_CHECK));
     fclose($fp);
 }
 
