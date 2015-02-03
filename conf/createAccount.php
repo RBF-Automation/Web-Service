@@ -1,6 +1,7 @@
 <?php
 include_once '../SQLConnect.php';
 include_once '../src/Account.php';
+include_once '../accountUtils.php';
 session_start();
 
 if (!checkLogin()) {
