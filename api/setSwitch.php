@@ -12,9 +12,9 @@ session_start();
 
 if (checkLogin()) {
 
-    if (isset($_POST['ID']) && isset($_POST['state']) && ($_POST['state'] == 1 || $_POST['state'] == 0 )) {
+    if (isset($_POST['id']) && isset($_POST['state']) && ($_POST['state'] == 1 || $_POST['state'] == 0 )) {
 
-        $node = new Node($_POST['ID']);
+        $node = new Node($_POST['id']);
 
         sendSwitchMessage($node->nodeId(), intval($_POST['state']));
 
