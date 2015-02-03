@@ -16,7 +16,8 @@ if (checkLogin()) {
 
         $node = new Node($_POST['id']);
 
-        sendSwitchMessage($node->nodeId(), intval($_POST['state']));
+        sendSwitchMessage($node->nodeId(), $_POST['state']);
+        $out = array('result' => true, "message" => 'setData');
 
     } else {
         $out = array('result' => false, "message" => 'Invalid args');
