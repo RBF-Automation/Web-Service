@@ -3,7 +3,7 @@ include_once '../SQLConnect.php';
 include_once '../src/Account.php';
 session_start();
 
-if (!isset($_SESSION['userid'])) {
+if (!checkLogin()) {
     header('Location: /conf/login.php');
     return;
 }
