@@ -12,7 +12,7 @@ function checkLogin() {
     if (isset($_SESSION['userid'])) {
         try {
             $acc = new Account($_SESSION['userid']);
-            return $acc->ID() == $_SESSION['userid'];
+            return (($acc->ID() == $_SESSION['userid']) && $acc->authToken() == $_SESSION['token']);
         } catch (Exception $e) {
         }
     }

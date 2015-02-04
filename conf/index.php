@@ -34,6 +34,7 @@ foreach (Account::getAccounts() as $account) {
     echo "username: <span style='font-weight: bold;'>" . $account->username() . "</span>";
     echo "<br/>Account created on: <span style='font-weight: bold;'>" . date('j/n/Y h:i:s A', $account->time()) . "</span><br/>";
     echo '<a href="deleteAccount.php?id=' . $account->ID() . '"> delete Account</a><br/><br/>';
+    echo '<a href="deauth.php?id=' . $account->ID() . '"> reset token</a> Current token: ' . $account->authToken() . '<br/><br/>';
 }
 ?>
 

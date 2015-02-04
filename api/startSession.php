@@ -5,14 +5,14 @@ include_once '../src/Account.php';
 include_once 'ErrorCodes.php';
 
 if (isset($_POST['token'])) {
-    session_start();
     try {
         $account = Account::fromToken($_POST['token']);
         if ($account->getID() != null) {
+            session_start();
             $_SESSION['userid'] = $account->ID();
+            $_SESSION['token'] = $account->authToken();
             $out = array('result' => true, "message" => 'session stared');
         } else {
-            session_destroy();
             $out = array('result' => false, "errorCode" => ErrorCodes::SESSION_START_FAILED, "message" => 'failed to start session');
         }
      } catch (Exception $e) {

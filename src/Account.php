@@ -41,7 +41,7 @@ class Account extends Fireball\ORM {
             self::USERNAME => $username,
             self::HASH => $hash,
             self::TIME => time(),
-            self::TOKEN => md5(openssl_random_pseudo_bytes(16, $cstrong)),
+            self::TOKEN => self::genToken(),
         );
 
         $ID = Fireball\ORM::newRecordAutoIncrement(self::TABLE_NAME, $data);
@@ -61,7 +61,7 @@ class Account extends Fireball\ORM {
         }
         $account = self::fromUsername($username);
         if ($resetToken) {
-            $account->authToken(md5(openssl_random_pseudo_bytes(16)));
+            resetToken($account);
         }
 
         if (self::checkPassword($password, $account->hash())) {
@@ -69,6 +69,14 @@ class Account extends Fireball\ORM {
         } else if ($account->username() == $username) {
             return false;
         }
+    }
+
+    public static function resetToken($account) {
+        $account->authToken(self::genToken());
+    }
+
+    private static function genToken() {
+        return md5(openssl_random_pseudo_bytes(16));
     }
 
     public static function validateToken($token) {

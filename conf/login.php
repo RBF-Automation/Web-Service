@@ -9,10 +9,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     try {
         $account = Account::login($username, $password);
+
         if ($account != false) {
             session_start();
             $_SESSION['userid'] = $account->ID();
+            $_SESSION['token'] = $account->authToken();
             header("Location: /conf");
+            return;
         } else {
         }
     } catch (Exception $e) {
