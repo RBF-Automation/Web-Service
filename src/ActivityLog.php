@@ -4,7 +4,7 @@ include_once 'DataAccessLayer/Fireball.php';
 include_once 'SwitchNodeProperties.php';
 include_once 'NodeTypes.php';
 
-class Node extends Fireball\ORM {
+class ActivityLog extends Fireball\ORM {
 
     const TABLE_NAME  = 'ActivityLog';
     const PRIMARY_KEY = 'ID';
