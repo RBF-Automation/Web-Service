@@ -27,14 +27,13 @@ class ActivityLog extends Fireball\ORM {
     }
 
     public static function log($username, $message) {
-        if (strlen($message) <= 0 && strlen($username) <= 0) {
+        if (strlen($message) < 0 && strlen($username) < 0) {
             throw new Exception("Invalid input");
         }
 
         $data = array (
-            self::NODE_ID => $nodeId,
-            self::USER    => $type,
-            self::MESSAGE => $type,
+            self::USER    => $username,
+            self::MESSAGE => $message,
             self::TIME => time(),
         );
 

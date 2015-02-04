@@ -68,6 +68,8 @@ foreach (Node::getNodes() as $node) {
             echo 'Name<input name="name" value="' . $props->name() . '"/><br/>';
             echo 'On text<input name="on" value="' . $props->btn_on() . '"/><br/>';
             echo 'Off text<input name="off" value="' . $props->btn_off() . '"/><br/>';
+            echo 'On log message<input name="logMessageOn" value="' . $props->logMessageOn() . '"/><br/>';
+            echo 'Off log message<input name="logMessageOff" value="' . $props->logMessageOff() . '"/><br/>';
             echo '<input type="submit"/>';
             echo '</form>';
             echo '</div>';

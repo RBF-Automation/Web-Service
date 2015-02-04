@@ -16,6 +16,8 @@ if (isset($_POST['name']) && isset($_POST['on']) && isset($_POST['off']) && isse
     $nodeProps->name($_POST['name']);
     $nodeProps->btn_on($_POST['on']);
     $nodeProps->btn_off($_POST['off']);
+    $nodeProps->logMessageOn($_POST['logMessageOn']);
+    $nodeProps->logMessageOff($_POST['logMessageOff']);
     header('Location: /conf/');
 }
 

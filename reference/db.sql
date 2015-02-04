@@ -29,6 +29,17 @@ create table SwitchNodeProperties (
     FOREIGN KEY (ID) REFERENCES Node(ID)
 );
 
+create table ActivityLog (
+    ID bigint unsigned NOT NULL AUTO_INCREMENT,
+    user varchar(100) NOT NULL,
+    message varchar(500) NOT NULL,
+    time int unsigned NOT NULL,
+
+    PRIMARY KEY (ID)
+);
+
+
+
 
 INSERT INTO Account VALUES (
     0,
