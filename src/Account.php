@@ -61,7 +61,7 @@ class Account extends Fireball\ORM {
         }
         $account = self::fromUsername($username);
         if ($resetToken) {
-            resetToken($account);
+            self::resetToken($account);
         }
 
         if (self::checkPassword($password, $account->hash())) {
