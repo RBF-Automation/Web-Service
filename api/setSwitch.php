@@ -25,9 +25,9 @@ if (checkLogin()) {
         $props = new SwitchNodeProperties($node->ID());
 
         if ($_POST['state'] == 1) {
-            ActivityLog::log($acc->username(), $props->logMessageOn());
+            ActivityLog::log($acc->username(), $props->logMessageOn() . ' ' . $props->name());
         } else {
-            ActivityLog::log($acc->username(), $props->logMessageOff());
+            ActivityLog::log($acc->username(), $props->logMessageOff() . ' ' . $props->name());
         }
 
         $out = array('result' => true, "message" => 'setData');
