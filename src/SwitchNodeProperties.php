@@ -4,17 +4,21 @@ include_once 'DataAccessLayer/Fireball.php';
 
 class SwitchNodeProperties extends Fireball\ORM {
 
-    const TABLE_NAME  = 'SwitchNodeProperties';
-    const PRIMARY_KEY = 'ID';
-    const NAME     = 'name';
-    const ON       = 'btn_on';
-    const OFF        = 'btn_off';
+    const TABLE_NAME      = 'SwitchNodeProperties';
+    const PRIMARY_KEY     = 'ID';
+    const NAME            = 'name';
+    const ON              = 'btn_on';
+    const OFF             = 'btn_off';
+    const LOG_MESSAGE_ON  = 'logMessageOn';
+    const LOG_MESSAGE_OFF = 'logMessageOff';
 
     private static $fields = array (
         self::PRIMARY_KEY,
         self::NAME,
         self::ON,
         self::OFF,
+        self::LOG_MESSAGE_ON,
+        self::LOG_MESSAGE_OFF,
     );
 
     //Override
@@ -28,7 +32,7 @@ class SwitchNodeProperties extends Fireball\ORM {
 
         error_log($ID);
 
-        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, "SWITCH", "ON", "OFF"))) {
+        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, "SWITCH", "ON", "OFF", "turned on", "turned off"))) {
             return new self($ID);
         } else {
             throw new Exception("Node creation failed");

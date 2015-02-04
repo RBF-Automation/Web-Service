@@ -8,8 +8,8 @@ class Node extends Fireball\ORM {
 
     const TABLE_NAME  = 'Node';
     const PRIMARY_KEY = 'ID';
-    const NODE_ID    = 'nodeId';
-    const NODE_TYPE    = 'type';
+    const NODE_ID     = 'nodeId';
+    const NODE_TYPE   = 'type';
     const TIME        = 'time';
 
     private static $fields = array (

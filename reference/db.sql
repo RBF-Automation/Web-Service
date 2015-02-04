@@ -22,6 +22,8 @@ create table SwitchNodeProperties (
     name varchar(100) NOT NULL,
     btn_on varchar(100) NOT NULL,
     btn_off varchar(100) NOT NULL,
+    logMessageOn varchar(500) NOT NULL,
+    logMessageOff varchar(500) NOT NULL,
 
     PRIMARY KEY (ID),
     FOREIGN KEY (ID) REFERENCES Node(ID)
@@ -35,3 +37,14 @@ INSERT INTO Account VALUES (
     UNIX_TIMESTAMP(),
     '0'
 );
+
+/* UPDATES */
+/*
+
+ALTER TABLE SwitchNodeProperties
+ADD logMessageOn varchar(500) NOT NULL;
+
+ALTER TABLE SwitchNodeProperties
+ADD logMessageOff varchar(500) NOT NULL;
+
+*/

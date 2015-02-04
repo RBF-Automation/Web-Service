@@ -3,6 +3,7 @@
 include_once '../SQLConnect.php';
 include_once '../src/Account.php';
 include_once '../src/Node.php';
+include_once '../src/ActivityLog.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
@@ -17,7 +18,18 @@ if (checkLogin()) {
 
         $node = new Node($_POST['id']);
 
+        $acc = new Account($_SESSION['userid']);
+
         sendSwitchMessage($node->nodeId(), $_POST['state']);
+
+        $props = new SwitchNodeProperties($node->ID());
+
+        if ($_POST['state'] == 1) {
+            ActivityLog::log($acc->username(), $props->logMessageOn());
+        } else {
+            ActivityLog::log($acc->username(), $props->logMessageOff());
+        }
+
         $out = array('result' => true, "message" => 'setData');
 
     } else {
