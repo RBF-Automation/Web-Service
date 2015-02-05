@@ -47,8 +47,8 @@ class ActivityLog extends Fireball\ORM {
 
     }
 
-    public static function getLog() {
-        $result = self::mapQuery(self::rawQuery('select * from ' . self::TABLE_NAME . ' order by time asc', null, true));
+    public static function getLog($lim) {
+        $result = self::mapQuery(self::rawQuery('select * from ' . self::TABLE_NAME . ' ORDER BY time DESC limit :lim', array(":lim" => $lim), true));
         return $result;
     }
 
