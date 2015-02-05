@@ -11,9 +11,9 @@ session_start();
 
 if (checkLogin()) {
 
-    if (isset($_GET['count']) && is_numeric($_GET['count']) && $_GET['count'] > 0 && $_GET['count'] < 100) {
+    if (isset($_POST['count']) && is_numeric($_POST['count']) && $_POST['count'] > 0 && $_POST['count'] < 100) {
 
-        $log = ActivityLog::getLog($_GET['count']);
+        $log = ActivityLog::getLog($_POST['count']);
 
         $data = array();
 
