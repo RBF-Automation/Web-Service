@@ -17,6 +17,9 @@ if (isset($_POST['nodeType'])) {
             case NodeTypes::SWITCH_NODE:
                 SwitchNodeProperties::createNew($node->ID());
                 break;
+
+            case NodeTypes::ACTIVITY_LOG:
+                break;
         }
 
         header('Location: /conf/');

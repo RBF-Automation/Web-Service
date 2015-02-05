@@ -26,6 +26,14 @@ if (checkLogin()) {
                     "btn_off" => $props->btn_off(),
                 );
                 break;
+                
+            case NodeTypes::ACTIVITY_LOG:
+                $props = new SwitchNodeProperties($node->ID());
+                $out[] = array(
+                    "id" => intval($node->ID()),
+                    "type" => intval($node->type()),
+                );
+                break;
         }
     }
 } else {
