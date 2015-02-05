@@ -10,9 +10,10 @@ if (!checkLogin()) {
     return;
 }
 
-if (isset($_POST['name']) && isset($_POST['on']) && isset($_POST['off']) && isset($_GET['ID'])) {
+if (isset($_POST['name']) && isset($_POST['on']) && isset($_POST['off']) && isset($_GET['ID']) && isset($_POST['nodeId']) && isset($_POST['logMessageOff'])) {
 
     $nodeProps = new SwitchNodeProperties($_GET['ID']);
+    $nodeProps->nodeId($_POST['nodeId']);
     $nodeProps->name($_POST['name']);
     $nodeProps->btn_on($_POST['on']);
     $nodeProps->btn_off($_POST['off']);

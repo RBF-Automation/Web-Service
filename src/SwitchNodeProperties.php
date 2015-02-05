@@ -6,6 +6,7 @@ class SwitchNodeProperties extends Fireball\ORM {
 
     const TABLE_NAME      = 'SwitchNodeProperties';
     const PRIMARY_KEY     = 'ID';
+    const NODE_ID         = 'nodeId';
     const NAME            = 'name';
     const ON              = 'btn_on';
     const OFF             = 'btn_off';
@@ -14,6 +15,7 @@ class SwitchNodeProperties extends Fireball\ORM {
 
     private static $fields = array (
         self::PRIMARY_KEY,
+        self::NODE_ID,
         self::NAME,
         self::ON,
         self::OFF,
@@ -32,7 +34,7 @@ class SwitchNodeProperties extends Fireball\ORM {
 
         error_log($ID);
 
-        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, "SWITCH", "ON", "OFF", "turned on", "turned off"))) {
+        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, 0, "SWITCH", "ON", "OFF", "turned on", "turned off"))) {
             return new self($ID);
         } else {
             throw new Exception("Node creation failed");

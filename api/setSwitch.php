@@ -19,10 +19,9 @@ if (checkLogin()) {
         $node = new Node($_POST['id']);
 
         $acc = new Account($_SESSION['userid']);
-
-        sendSwitchMessage($node->nodeId(), $_POST['state']);
-
         $props = new SwitchNodeProperties($node->ID());
+
+        sendSwitchMessage($props->nodeId(), $_POST['state']);
 
         if ($_POST['state'] == 1) {
             ActivityLog::log($acc->username(), $props->logMessageOn() . ' ' . $props->name());

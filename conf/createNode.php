@@ -10,9 +10,15 @@ if (!checkLogin()) {
     return;
 }
 
-if (isset($_POST['nodeId']) && isset($_POST['nodeType'])) {
+if (isset($_POST['nodeType'])) {
     try {
-        $account = Node::createNew($_POST['nodeId'], $_POST['nodeType']);
+        $node = Node::createNew($_POST['nodeType']);
+        switch ($node->type()) {
+            case NodeTypes::SWITCH_NODE:
+                SwitchNodeProperties::createNew($node->ID());
+                break;
+        }
+
         header('Location: /conf/');
     } catch (Exception $e) {
         echo  $e->getMessage();

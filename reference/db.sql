@@ -10,7 +10,6 @@ create table Account (
 
 create table Node (
     ID bigint unsigned NOT NULL AUTO_INCREMENT,
-    nodeId bigint unsigned NOT NULL,
     type int unsigned NOT NULL,
     time int unsigned NOT NULL,
 
@@ -19,6 +18,7 @@ create table Node (
 
 create table SwitchNodeProperties (
     ID bigint unsigned NOT NULL,
+    nodeId bigint unsigned NOT NULL,
     name varchar(100) NOT NULL,
     btn_on varchar(100) NOT NULL,
     btn_off varchar(100) NOT NULL,

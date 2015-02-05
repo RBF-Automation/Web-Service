@@ -43,8 +43,6 @@ foreach (Account::getAccounts() as $account) {
 <hr/>
 <h3> Create Node </h3>
 <form action="createNode.php" method="post">
-NodeId
-<input name="nodeId"/><br/>
 type
 <input name="nodeType"/><br/>
 <input type="submit"/>
@@ -54,7 +52,6 @@ type
 <?php
 foreach (Node::getNodes() as $node) {
     $type = $node->type();
-    echo "nodeId: <span style='font-weight: bold;'>" . $node->nodeId() . "</span>";
     echo "<br/>nodeType: <span style='font-weight: bold;'>" . NodeTypes::$map[$type] . "</span>";
     echo "<br/>Node created on: <span style='font-weight: bold;'>" . date('j/n/Y h:i:s A', $node->time()) . "</span><br/>";
     echo '<a href="deleteNode.php?id=' . $node->ID() . '"> delete Node</a><br/>';
@@ -62,9 +59,9 @@ foreach (Node::getNodes() as $node) {
     switch ($node->type()) {
         case NodeTypes::SWITCH_NODE:
             $props = new SwitchNodeProperties($node->ID());
-
             echo '<div style="margin-left: 40px; display: block;">';
             echo '<form action="editSwitchNode.php?ID=' . $node->ID() . '" method="post">';
+            echo 'nodeId<input name="nodeId" value="' . $props->nodeId() . '"/><br/>';
             echo 'Name<input name="name" value="' . $props->name() . '"/><br/>';
             echo 'On text<input name="on" value="' . $props->btn_on() . '"/><br/>';
             echo 'Off text<input name="off" value="' . $props->btn_off() . '"/><br/>';
