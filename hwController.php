@@ -10,6 +10,4 @@ function sendSwitchMessage($pipe, $state) {
     fclose($fp);
 }
 
-
-
 ?>

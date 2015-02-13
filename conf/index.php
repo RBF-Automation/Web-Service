@@ -4,6 +4,7 @@ include_once '../src/Account.php';
 include_once '../src/Node.php';
 include_once '../src/NodeTypes.php';
 include_once '../src/SwitchNodeProperties.php';
+include_once '../src/IpTrackerNodeProperties.php';
 include_once '../accountUtils.php';
 session_start();
 
@@ -71,6 +72,18 @@ foreach (Node::getNodes() as $node) {
             echo '</form>';
             echo '</div>';
 
+            break;
+            
+        case NodeTypes::IP_TRACKER:
+            $props = new IpTrackerNodeProperties($node->ID());
+            echo '<div style="margin-left: 40px; display: block;">';
+            echo '<form action="editIpTrackerNode.php?ID=' . $node->ID() . '" method="post">';
+            echo 'server<input name="server" value="' . $props->server() . '"/><br/>';
+            var_dump($props->getIps());
+            echo '<input type="submit"/>';
+            echo '</form>';
+            echo '</div>';
+            
             break;
 
     }

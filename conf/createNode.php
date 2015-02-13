@@ -3,6 +3,8 @@ include_once '../SQLConnect.php';
 include_once '../src/Account.php';
 include_once '../src/Node.php';
 include_once '../accountUtils.php';
+include_once '../src/SwitchNodeProperties.php';
+include_once '../src/IpTrackerNodeProperties.php';
 session_start();
 
 if (!checkLogin()) {
@@ -19,6 +21,10 @@ if (isset($_POST['nodeType'])) {
                 break;
 
             case NodeTypes::ACTIVITY_LOG:
+                break;
+                
+            case NodeTypes::IP_TRACKER:
+                IpTrackerNodeProperties::createNew($node->ID());
                 break;
         }
 

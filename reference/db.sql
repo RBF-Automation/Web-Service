@@ -29,6 +29,15 @@ create table SwitchNodeProperties (
     FOREIGN KEY (ID) REFERENCES Node(ID)
 );
 
+
+create table IpTrackerNodeProperties (
+    ID bigint unsigned NOT NULL,
+    server varchar(100) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID) REFERENCES Node(ID)
+);
+
 create table ActivityLog (
     ID bigint unsigned NOT NULL AUTO_INCREMENT,
     user varchar(100) NOT NULL,
