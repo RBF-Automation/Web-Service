@@ -35,7 +35,13 @@ class IpTrackerNodeProperties extends Fireball\ORM {
     }
     
     public function getIps() {
-        return self::webRequest($this->server() . '/api/getIps.php', array());
+        $data = self::webRequest($this->server() . '/api/getUsers.php', array());
+        $parsed = json_decode($data);
+        return $parsed;
+    }
+    
+    public function newUser($ip) {
+        self::webRequest($this->server() . '/api/newUser.php?ip=' . $ip, array());
     }
     
     private static function webRequest($url, $args) {

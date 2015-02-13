@@ -14,7 +14,15 @@ if (isset($_POST['server'])) {
 
     $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
     $nodeProps->server($_POST['server']);
-    header('Location: /conf/');
 }
+
+
+if (isset($_POST['newIp'])) {
+    error_log('here');
+    $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
+    $nodeProps->newUser($_POST['newIp']);
+}
+
+header('Location: /conf/');
 
 ?>

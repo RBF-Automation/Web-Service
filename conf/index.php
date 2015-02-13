@@ -79,7 +79,12 @@ foreach (Node::getNodes() as $node) {
             echo '<div style="margin-left: 40px; display: block;">';
             echo '<form action="editIpTrackerNode.php?ID=' . $node->ID() . '" method="post">';
             echo 'server<input name="server" value="' . $props->server() . '"/><br/>';
-            var_dump($props->getIps());
+            echo 'newIp<input name="newIp"/><br/>';
+            foreach ($props->getIps() as $ip) {
+                error_log($ip);
+                echo $ip;
+                echo '<br/>';
+            }
             echo '<input type="submit"/>';
             echo '</form>';
             echo '</div>';
