@@ -87,9 +87,9 @@ foreach (Node::getNodes() as $node) {
             echo '</select><br/>';
             echo '<input type="submit"/>';
             echo '</form>';
-            
-            foreach ($props->getIps() as $ip) {
-                echo $ip . '<a href="editIpTrackerNode.php?ID=' . $node->ID() . '&delete=' . $ip . '">delete</a>';
+            foreach ($props->getUsers() as $data) {
+                $user = new Account($data['user']);
+                echo $data['ip'] . ' ' . $user->username() . ' ' . ' <a href="editIpTrackerNode.php?ID=' . $node->ID() . '&delete=' . $data['ip'] . '">delete</a>';
                 echo '<br/>';
             }
             echo '</div>';

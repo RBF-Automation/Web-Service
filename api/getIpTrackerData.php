@@ -2,6 +2,7 @@
 
 include_once '../SQLConnect.php';
 include_once '../src/Account.php';
+include_once '../src/Node.php';
 include_once '../src/IpTrackerNodeProperties.php';
 include_once '../accountUtils.php';
 include_once 'ErrorCodes.php';
@@ -14,15 +15,19 @@ if (checkLogin()) {
         $node = new Node($_POST['id']);
         $props = new IpTrackerNodeProperties($node->ID());
         
-        $data = array();
+        $outData = array();
         
-        foreach ($log as $event) {
-            $data[] = array(
-                //finish
-            );
+        foreach ($props->getUsers() as $data) {
+            $user = new Account($data['user']);
+            if ($data['isHome']) {
+                $outData[] = array(
+                    'username' => $user->username()
+                );
+            }
+            
         }
         
-        $out = array('result' => true, 'data' => $data);
+        $out = array('result' => true, 'data' => $outData);
         
         
     } else {

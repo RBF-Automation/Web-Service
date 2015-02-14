@@ -36,9 +36,9 @@ class IpTrackerNodeProperties extends Fireball\ORM {
         self::rawQuery('delete from ' . self::TABLE_NAME . ' where id = :ID', array(self::PRIMARY_KEY => $id), true);
     }
     
-    public function getIps() {
+    public function getUsers() {
         $data = self::webRequest($this->server() . '/api/getUsers.php', array());
-        $parsed = json_decode($data);
+        $parsed = json_decode($data, true);
         return $parsed;
     }
     
