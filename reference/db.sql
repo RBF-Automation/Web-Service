@@ -33,6 +33,7 @@ create table SwitchNodeProperties (
 create table IpTrackerNodeProperties (
     ID bigint unsigned NOT NULL,
     server varchar(100) NOT NULL,
+    name varchar(100) NOT NULL,
     
     PRIMARY KEY (ID),
     FOREIGN KEY (ID) REFERENCES Node(ID)

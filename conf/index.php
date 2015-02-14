@@ -79,14 +79,19 @@ foreach (Node::getNodes() as $node) {
             echo '<div style="margin-left: 40px; display: block;">';
             echo '<form action="editIpTrackerNode.php?ID=' . $node->ID() . '" method="post">';
             echo 'server<input name="server" value="' . $props->server() . '"/><br/>';
-            echo 'newIp<input name="newIp"/><br/>';
-            foreach ($props->getIps() as $ip) {
-                error_log($ip);
-                echo $ip;
-                echo '<br/>';
+            echo 'Name<input name="name" value="' . $props->name() . '"/><br/>';
+            echo 'newIp<input name="newIp"/><select name="user">';
+            foreach (Account::getAccounts() as $account) {
+                echo '<option value="' . $account->ID() . '">' . $account->username() . '</option>';
             }
+            echo '</select><br/>';
             echo '<input type="submit"/>';
             echo '</form>';
+            
+            foreach ($props->getIps() as $ip) {
+                echo $ip . '<a href="editIpTrackerNode.php?ID=' . $node->ID() . '&delete=' . $ip . '">delete</a>';
+                echo '<br/>';
+            }
             echo '</div>';
             
             break;

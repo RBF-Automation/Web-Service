@@ -10,19 +10,23 @@ if (!checkLogin()) {
     return;
 }
 
-if (isset($_POST['server'])) {
+if (isset($_POST['server']) && isset($_POST['name'])) {
 
     $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
     $nodeProps->server($_POST['server']);
+    $nodeProps->name($_POST['name']);
 }
 
 
-if (isset($_POST['newIp'])) {
-    error_log('here');
+if (isset($_POST['newIp']) && isset($_POST['user'])) {
     $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
-    $nodeProps->newUser($_POST['newIp']);
+    $nodeProps->newUser($_POST['newIp'], $_POST['user']);
 }
 
+if (isset($_GET['delete'])) {
+    $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
+    $nodeProps->deleteClientIp($_GET['delete']);
+}
 header('Location: /conf/');
 
 ?>

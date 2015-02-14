@@ -4,6 +4,7 @@ include_once '../SQLConnect.php';
 include_once '../src/Account.php';
 include_once '../src/Node.php';
 include_once '../src/SwitchNodeProperties.php';
+include_once '../src/IpTrackerNodeProperties.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
 include_once 'ErrorCodes.php';
@@ -33,6 +34,15 @@ if (checkLogin()) {
                     "id" => intval($node->ID()),
                     "type" => intval($node->type()),
                     "name" => NodeTypes::$map[NodeTypes::ACTIVITY_LOG],
+                );
+                break;
+                
+            case NodeTypes::IP_TRACKER:
+                $props = new IpTrackerNodeProperties($node->ID());
+                $out[] = array(
+                    "id" => intval($node->ID()),
+                    "type" => intval($node->type()),
+                    "name" => $props->name(),
                 );
                 break;
         }

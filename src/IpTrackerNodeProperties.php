@@ -7,10 +7,12 @@ class IpTrackerNodeProperties extends Fireball\ORM {
     const TABLE_NAME      = 'IpTrackerNodeProperties';
     const PRIMARY_KEY     = 'ID';
     const SERVER          = 'server';
+    const NAME            = 'name';
 
     private static $fields = array (
         self::PRIMARY_KEY,
         self::SERVER,
+        self::NAME,
     );
 
     //Override
@@ -22,7 +24,7 @@ class IpTrackerNodeProperties extends Fireball\ORM {
 
     public static function createNew($ID) {
 
-        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, ''))) {
+        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, '', ''))) {
             return new self($ID);
         } else {
             throw new Exception("Node creation failed");
@@ -40,8 +42,12 @@ class IpTrackerNodeProperties extends Fireball\ORM {
         return $parsed;
     }
     
-    public function newUser($ip) {
-        self::webRequest($this->server() . '/api/newUser.php?ip=' . $ip, array());
+    public function newUser($ip, $user) {
+        self::webRequest($this->server() . '/api/newUser.php?ip=' . $ip . '&id=' . $user, array());
+    }
+    
+    public function deleteClientIp($ip) {
+        self::webRequest($this->server() . '/api/removeUser.php?ip=' . $ip, array());
     }
     
     private static function webRequest($url, $args) {
