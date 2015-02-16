@@ -18,7 +18,7 @@ if (isset($_POST['server']) && isset($_POST['name'])) {
 }
 
 
-if (isset($_POST['newIp']) && isset($_POST['user'])) {
+if (isset($_POST['newIp']) && isset($_POST['user']) && $_POST['newIp'] != "" && $_POST['user'] != '') {
     $nodeProps = new IpTrackerNodeProperties($_GET['ID']);
     $nodeProps->newUser($_POST['newIp'], $_POST['user']);
 }
