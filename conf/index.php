@@ -36,7 +36,6 @@ if (!checkLogin()) {
         background: #8E24AA;
         box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.50);
         width: 100%;
-        height: 50px;
         position: fixed;
         top: 0;
         left: 0;
@@ -75,7 +74,7 @@ if (!checkLogin()) {
     body {
         font-family: 'Open Sans', sans-serif;
         background: #E4E4E4;
-        margin-top: 20px;
+        margin-top: 70px;
     }
     table {border: none;}
     </style>
