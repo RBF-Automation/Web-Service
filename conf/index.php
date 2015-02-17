@@ -273,7 +273,7 @@ if (!checkLogin()) {
                             <?php
                             foreach ($props->getUsers() as $data) {
                                 $user = new Account($data['user']);
-                                echo '<tr><td>' . $data['ip'] . '</td>' . $user->username() . ' ' . '<td><a href="editIpTrackerNode.php?ID=' . $node->ID() . '&delete=' . $data['ip'] . '">delete</a></td></tr>';
+                                echo '<tr><td>' . $user->username() . '</td><td>' . $data['ip'] . '</td><td><a href="editIpTrackerNode.php?ID=' . $node->ID() . '&delete=' . $data['ip'] . '">delete</a></td></tr>';
                             }
                             ?>
                         </tr>
