@@ -18,7 +18,7 @@ if (!checkLogin()) {
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <style>
     .card {
-        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.50);
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.30);
         border-radius: 2px;
         background: #FFF;
     }
@@ -34,7 +34,7 @@ if (!checkLogin()) {
     }
     .topBar {
         background: #8E24AA;
-        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.50);
+        box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.40);
         width: 100%;
         position: fixed;
         top: 0;
