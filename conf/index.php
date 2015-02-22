@@ -14,7 +14,10 @@ if (!checkLogin()) {
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset='utf-8'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <style>
     .card {
@@ -289,3 +292,4 @@ if (!checkLogin()) {
     }
     ?>
 </div>
+</html>
