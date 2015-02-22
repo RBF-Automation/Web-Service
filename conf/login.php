@@ -25,7 +25,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 ?>
 
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
 <form action="login.php" method="post">
     username
     <input name="username"/><br/>
@@ -33,3 +38,5 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <input type="password" name="password"/><br/>
     <input type="submit"/>
 </form>
+</body>
+</html>
