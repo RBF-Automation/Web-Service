@@ -1,0 +1,75 @@
+    .card {
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.30);
+        border-radius: 2px;
+        background: #FFF;
+    }
+    .node {
+        margin: 10px;
+        padding: 8px;
+        float: left;
+    }
+    .account {
+        margin: 10px;
+        padding: 8px;
+        float: left;
+    }
+    .topBar {
+        background: #8E24AA;
+        box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.40);
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .title {
+        color: #fff;
+        font-size: 20pt;
+        padding: 10px;
+        float: left;
+    }
+    .logout {
+        float: right;
+        color: #fff;
+        font-size: 20pt;
+        padding: 10px;
+    }
+    .logout a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .logout a:hover {
+        text-decoration: underline;
+    }
+    
+    .hightlight {
+        background: rgba(247, 250, 80, 0.64);
+    }
+    .hover:hover {
+        background: #F0F0F0;
+    }
+    .indentContent {
+        margin: 20px;
+        
+    }
+    .createNode {
+        margin: 10px;
+        padding-top: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        float: left;
+    }
+    tr, td {
+        padding: 2px;
+        padding-right: 5px;
+        border: 0px;
+    }
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background: #E4E4E4;
+        margin-top: 70px;
+    }
+    table {
+        border: none;
+        margin: 0 auto;
+    }
