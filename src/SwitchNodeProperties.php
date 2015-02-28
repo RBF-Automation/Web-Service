@@ -31,13 +31,23 @@ class SwitchNodeProperties extends Fireball\ORM {
     }
 
     public static function createNew($ID) {
-
-        error_log($ID);
-
-        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, 0, "SWITCH", "ON", "OFF", "turned on", "turned off"))) {
+        
+        $data =  array (
+            self::PRIMARY_KEY => $ID,
+            self::NODE_ID => 0,
+            self::NAME => "SWITCH",
+            self::ON => "ON",
+            self::OFF => "OFF",
+            self::LOG_MESSAGE_ON => "turned on",
+            self::LOG_MESSAGE_OFF => "turned off",
+        );
+        
+        $ID = Fireball\ORM::newRecord(self::TABLE_NAME, $data);
+        
+        if (is_numeric($ID)) {
             return new self($ID);
         } else {
-            throw new Exception("Node creation failed");
+            throw new Exception("switch node props creation failed");
         }
 
     }

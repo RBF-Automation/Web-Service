@@ -33,7 +33,7 @@ class Node extends Fireball\ORM {
             self::TIME => time(),
         );
 
-        $ID = Fireball\ORM::newRecordAutoIncrement(self::TABLE_NAME, $data);
+        $ID = Fireball\ORM::newRecord(self::TABLE_NAME, $data);
 
         if (is_numeric($ID)) {
             return new self($ID);

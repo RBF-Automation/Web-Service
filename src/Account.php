@@ -44,7 +44,7 @@ class Account extends Fireball\ORM {
             self::TOKEN => self::genToken(),
         );
 
-        $ID = Fireball\ORM::newRecordAutoIncrement(self::TABLE_NAME, $data);
+        $ID = Fireball\ORM::newRecord(self::TABLE_NAME, $data);
 
         if (is_numeric($ID)) {
             return new self($ID);

@@ -23,13 +23,20 @@ class IpTrackerNodeProperties extends Fireball\ORM {
     }
 
     public static function createNew($ID) {
-
-        if (Fireball\ORM::newRecord(self::TABLE_NAME, self::$fields, array($ID, '', ''))) {
+        
+        $data =  array (
+            self::PRIMARY_KEY => $ID,
+            self::SERVER => "",
+            self::NAME => "",
+        );
+        
+        $ID = Fireball\ORM::newRecord(self::TABLE_NAME, $data);
+        
+        if (is_numeric($ID)) {
             return new self($ID);
         } else {
-            throw new Exception("Node creation failed");
+            throw new Exception("ip tracker node props creation failed");
         }
-
     }
 
     public static function delete($id) {
