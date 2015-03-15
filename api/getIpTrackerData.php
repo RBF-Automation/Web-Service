@@ -11,8 +11,8 @@ session_start();
 
 if (checkLogin()) {
     
-    if (isset($_GET['id'])) {
-        $node = new Node($_GET['id']);
+    if (isset($_POST['id'])) {
+        $node = new Node($_POST['id']);
         $props = new IpTrackerNodeProperties($node->ID());
         
         $outData = array();
