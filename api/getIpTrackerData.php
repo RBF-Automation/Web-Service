@@ -11,17 +11,18 @@ session_start();
 
 if (checkLogin()) {
     
-    if (isset($_POST['id'])) {
-        $node = new Node($_POST['id']);
+    if (isset($_GET['id'])) {
+        $node = new Node($_GET['id']);
         $props = new IpTrackerNodeProperties($node->ID());
         
         $outData = array();
-        
-        foreach ($props->getUsers() as $data) {
+        $results = $props->getUsers();
+        foreach ($results as $data) {
             $user = new Account($data['user']);
             if ($data['isHome']) {
                 $outData[] = array(
-                    'username' => $user->username()
+                    'username' => $user->username(),
+                    'status' => $data['status']
                 );
             }
             
