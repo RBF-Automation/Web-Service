@@ -48,6 +48,14 @@ create table ActivityLog (
     PRIMARY KEY (ID)
 );
 
+create table IpMap (
+    ID bigint unsigned NOT NULL AUTO_INCREMENT,
+    user bigint unsigned NOT NULL,
+    ip varchar(100) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (user) REFERENCES Account(ID)
+);
 
 
 

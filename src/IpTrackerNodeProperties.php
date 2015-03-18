@@ -1,6 +1,7 @@
 <?php
 
 include_once 'DataAccessLayer/Fireball.php';
+include_once 'IpMap.php';
 
 class IpTrackerNodeProperties extends Fireball\ORM {
 
@@ -46,14 +47,22 @@ class IpTrackerNodeProperties extends Fireball\ORM {
     public function getUsers() {
         $data = self::webRequest($this->server() . '/api/getUsers.php', array());
         $parsed = json_decode($data, true);
+        
+        for ($i = 0; $i < sizeof($parsed); $i++) {
+            $map = IpMap::fromIp($parsed[$i]['ip']);
+            $parsed[$i]['user'] = $map->user();
+        }
+        
         return $parsed;
     }
     
     public function newUser($ip, $user) {
-        self::webRequest($this->server() . '/api/newUser.php?ip=' . $ip . '&id=' . $user, array());
+        IpMap::createNew($ip, $user);
+        self::webRequest($this->server() . '/api/newUser.php?ip=' . $ip, array());
     }
     
     public function deleteClientIp($ip) {
+        IpMap::delete($ip);
         self::webRequest($this->server() . '/api/removeUser.php?ip=' . $ip, array());
     }
     
