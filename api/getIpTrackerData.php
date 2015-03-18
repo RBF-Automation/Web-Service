@@ -19,12 +19,11 @@ if (checkLogin()) {
         $results = $props->getUsers();
         foreach ($results as $data) {
             $user = new Account($data['user']);
-            if ($data['isHome']) {
-                $outData[] = array(
-                    'username' => $user->username(),
-                    'status' => $data['status']
-                );
-            }
+            $outData[] = array(
+                'username' => $user->username(),
+                'isHome' => $data['isHome'],
+                'status' => $data['status']
+            );
             
         }
         
