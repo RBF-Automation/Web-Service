@@ -5,6 +5,7 @@ include_once '../src/Account.php';
 include_once '../src/Node.php';
 include_once '../src/ActivityLog.php';
 include_once '../src/SwitchNodeProperties.php';
+include_once '../src/mFiOutletProperties.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
 include_once '../hwController.php';
@@ -17,11 +18,18 @@ if (checkLogin()) {
     if (isset($_POST['id']) && isset($_POST['state']) && ($_POST['state'] == 1 || $_POST['state'] == 0 )) {
 
         $node = new Node($_POST['id']);
+        $type = $node->type();
 
         $acc = new Account($_SESSION['userid']);
-        $props = new SwitchNodeProperties($node->ID());
 
-        sendSwitchMessage($props->nodeId(), $_POST['state']);
+        if ($type == NodeTypes::SWITCH_NODE) {
+            $props = new SwitchNodeProperties($node->ID());
+            sendSwitchMessage($props->nodeId(), $_POST['state']);
+        } else {
+            $props = new mFiOutletProperties($node->ID());
+            $props->msg($_POST['state']);
+        }
+
 
         if ($_POST['state'] == 1) {
             ActivityLog::log($acc->username(), $props->logMessageOn() . ' ' . $props->name());

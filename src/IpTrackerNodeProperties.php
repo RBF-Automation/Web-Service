@@ -46,6 +46,7 @@ class IpTrackerNodeProperties extends Fireball\ORM {
     
     public function getUsers() {
         $data = self::webRequest($this->server() . '/api/getUsers.php', array());
+        error_log($data);
         $parsed = json_decode($data, true);
         
         for ($i = 0; $i < sizeof($parsed); $i++) {

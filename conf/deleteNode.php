@@ -6,6 +6,7 @@ include_once '../src/Node.php';
 include_once '../accountUtils.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/IpTrackerNodeProperties.php';
+include_once '../src/mFiOutletProperties.php';
 
 session_start();
 
@@ -27,6 +28,9 @@ if (isset($_GET['id'])) {
                 break;
             case NodeTypes::IP_TRACKER:
                 IpTrackerNodeProperties::delete($id);
+                break;
+            case NodeTypes::MFI_SWITCH:
+                mFiOutletProperties::delete($id);
                 break;
         }
         

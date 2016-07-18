@@ -29,6 +29,22 @@ create table SwitchNodeProperties (
     FOREIGN KEY (ID) REFERENCES Node(ID)
 );
 
+create table mFiOutlet (
+    ID bigint unsigned NOT NULL,
+    address varchar(2048) NOT NULL,
+    username varchar(128) NOT NULL,
+    password varchar(128) NOT NULL,
+    relay int NOT NULL,
+    name varchar(100) NOT NULL,
+    btn_on varchar(100) NOT NULL,
+    btn_off varchar(100) NOT NULL,
+    logMessageOn varchar(500) NOT NULL,
+    logMessageOff varchar(500) NOT NULL,
+
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID) REFERENCES Node(ID)
+);
+
 
 create table IpTrackerNodeProperties (
     ID bigint unsigned NOT NULL,

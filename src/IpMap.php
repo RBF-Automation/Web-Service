@@ -38,12 +38,18 @@ class IpMap extends Fireball\ORM {
         if (is_numeric($ID)) {
             return new self($ID);
         } else {
-            throw new Exception("user creation failed");
+            //throw new Exception("mapping not found");
+            // Silently fail - IP exists remotely but not locally. Something was deleted improperly. 
+            // Nothing to see here
         }
     }
     
     public static function delete($ip) {
         self::rawQuery('delete from ' . self::TABLE_NAME . ' where ip = :IP', array('IP' => $ip), true);
+    }
+
+    public static function deleteByUser($ip) {
+        self::rawQuery('delete from ' . self::TABLE_NAME . ' where user = :IP', array('IP' => $ip), true);
     }
 
     public static function fromIp($ip) {
