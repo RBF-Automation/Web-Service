@@ -6,6 +6,7 @@ include_once '../accountUtils.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/IpTrackerNodeProperties.php';
 include_once '../src/mFiOutletProperties.php';
+include_once '../src/TcpSwitch.php';
 session_start();
 
 if (!checkLogin()) {
@@ -27,8 +28,13 @@ if (isset($_POST['nodeType'])) {
             case NodeTypes::IP_TRACKER:
                 IpTrackerNodeProperties::createNew($node->ID());
                 break;
+
             case NodeTypes::MFI_SWITCH:
                 mFiOutletProperties::createNew($node->ID());
+                break;
+
+            case NodeTypes::TCP_SWITCH:
+                TcpSwitch::createNew($node->ID());
                 break;
         }
 

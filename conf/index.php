@@ -6,6 +6,7 @@ include_once '../src/NodeTypes.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/IpTrackerNodeProperties.php';
 include_once '../src/mFiOutletProperties.php';
+include_once '../src/TcpSwitch.php';
 include_once '../accountUtils.php';
 session_start();
 
@@ -171,7 +172,7 @@ if (!checkLogin()) {
                                 <td><input name="name" value="<?= $props->name(); ?>"/></td>
                             </tr>
                             <tr>
-                                <td>address</td>
+                                <td>Address</td>
                                 <td><input name="address" value="<?= $props->address(); ?>"/></td>
                             </tr>
                             <tr>
@@ -185,6 +186,59 @@ if (!checkLogin()) {
                             <tr>
                                 <td>relay</td>
                                 <td><input name="relay" type="number" value="<?= $props->relay(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>On text</td>
+                                <td><input name="on" value="<?= $props->btn_on(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Off text</td>
+                                <td><input name="off" value="<?= $props->btn_off(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>On log message</td>
+                                <td><input name="logMessageOn" value="<?= $props->logMessageOn(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Off log message</td>
+                                <td><input name="logMessageOff" value="<?= $props->logMessageOff(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input style="float: right;" type="submit"/></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                
+                <?php
+                break;
+
+                case NodeTypes::TCP_SWITCH:
+                $props = new TcpSwitch($node->ID());
+                ?>
+                <div style="display: block; padding-top: 10px">
+                    <form action="editTcpSwitch.php?ID=<?= $node->ID(); ?>" method="post">
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td><input name="name" value="<?= $props->name(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td><input name="address" value="<?= $props->address(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Port</td>
+                                <td><input name="port" value="<?= $props->port(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>On Command</td>
+                                <td><input name="onCmd" value="<?= $props->onCmd(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Off Command</td>
+                                <td><input name="offCmd" value="<?= $props->offCmd(); ?>"/></td>
                             </tr>
                             <tr>
                                 <td>On text</td>

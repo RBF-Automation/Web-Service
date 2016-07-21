@@ -6,6 +6,7 @@ include_once '../src/Node.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/IpTrackerNodeProperties.php';
 include_once '../src/mFiOutletProperties.php';
+include_once '../src/TcpSwitch.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
 include_once 'ErrorCodes.php';
@@ -31,6 +32,17 @@ if (checkLogin()) {
 
             case NodeTypes::MFI_SWITCH:
                 $props = new mFiOutletProperties($node->ID());
+                $out[] = array(
+                    "id" => intval($node->ID()),
+                    "type" => NodeTypes::SWITCH_NODE, //hack to trick the app into thinking this is any other switch
+                    "name" => $props->name(),
+                    "btn_on" => $props->btn_on(),
+                    "btn_off" => $props->btn_off(),
+                );
+                break;
+
+            case NodeTypes::TCP_SWITCH:
+                $props = new TcpSwitch($node->ID());
                 $out[] = array(
                     "id" => intval($node->ID()),
                     "type" => NodeTypes::SWITCH_NODE, //hack to trick the app into thinking this is any other switch

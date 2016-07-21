@@ -6,6 +6,7 @@ include_once '../src/Node.php';
 include_once '../src/ActivityLog.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/mFiOutletProperties.php';
+include_once '../src/TcpSwitch.php';
 include_once '../src/NodeTypes.php';
 include_once '../accountUtils.php';
 include_once '../hwController.php';
@@ -25,9 +26,16 @@ if (checkLogin()) {
         if ($type == NodeTypes::SWITCH_NODE) {
             $props = new SwitchNodeProperties($node->ID());
             sendSwitchMessage($props->nodeId(), $_POST['state']);
-        } else {
+        } else if ($type == NodeTypes::MFI_SWITCH) {
             $props = new mFiOutletProperties($node->ID());
             $props->msg($_POST['state']);
+        } else {
+            $props = new TcpSwitch($node->ID());
+            if ($_POST['state'] == 1) {
+                $props->sendOnMsg();
+            } else {
+                $props->sendOffMsg();
+            }
         }
 
 

@@ -7,6 +7,7 @@ include_once '../accountUtils.php';
 include_once '../src/SwitchNodeProperties.php';
 include_once '../src/IpTrackerNodeProperties.php';
 include_once '../src/mFiOutletProperties.php';
+include_once '../src/TcpSwitch.php';
 
 session_start();
 
@@ -31,6 +32,9 @@ if (isset($_GET['id'])) {
                 break;
             case NodeTypes::MFI_SWITCH:
                 mFiOutletProperties::delete($id);
+                break;
+            case NodeTypes::TCP_SWITCH:
+                TcpSwitch::delete($id);
                 break;
         }
         
